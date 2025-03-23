@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量子X策略镜像 - 币安跟单</title>
+    <style>
+        :root {
+            --x-color: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            overflow-x: hidden;
+            font-family: 'Arial', sans-serif;
+            color: var(--x-color);
+        }
+
+        /* 双层海浪容器 */
+        .ocean-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200vh; /* 双倍高度用于镜像 */
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 主海浪层 */
+        .x-ocean {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: brightness(1.2);
+        }
+
+        /* 镜像海浪层 */
+        .x-ocean-mirror {
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 100%;
+            transform: scaleY(-1);
+            mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,0.8) 10%, 
+                rgba(0,0,0,0.3) 50%,
+                transparent 90%);
+        }
+
+        .x-particle {
+            position: absolute;
+            color: var(--x-color);
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+            animation: waveFlow 14s cubic-bezier(0.4,0,0.2,1) infinite;
+            font-family: 'Courier New', monospace;
+        }
+
+        @keyframes waveFlow {
+            0% {
+                transform: translate(calc(-10vw * var(--wave-offset)), 120vh) 
+                    rotate(calc(-15deg * var(--wave-rotate)))
+                    scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.9;
+                transform: rotate(0deg) scale(1.3);
+            }
+            50% {
+                transform: translateX(calc(30px * var(--wave-offset))) 
+                    rotate(calc(10deg * var(--wave-rotate)));
+            }
+            100% {
+                transform: translate(calc(10vw * var(--wave-offset)), -50vh) 
+                    rotate(calc(25deg * var(--wave-rotate)))
+                    scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        /* 镜面内容窗口 */
+        .mirror-window {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 5vh auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(255,255,255,0.1);
+        }
+
+        .mirror-reflection {
+            position: absolute;
+            bottom: -150%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scaleY(-1);
+            opacity: 0.3;
+            mask-image: linear-gradient(to bottom, 
+                transparent 10%, 
+                rgba(0,0,0,0.6) 30%,
+                transparent 90%);
+        }
+
+        .strategy-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 20px #fff;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 海浪容器 -->
+    <div class="ocean-container">
+        <div class="x-ocean" id="xOcean"></div>
+        <div class="x-ocean-mirror" id="xOceanMirror"></div>
+    </div>
+
+    <!-- 镜面窗口 -->
+    <div class="mirror-window">
+        <!-- 窗口内容 -->
+        <h1>影流221</h1>
+        
+        <div class="strategy-section">
+            <h2>策略核心</h2>
+            <p>1. 基于价格的高纬空间建模 （构建五维特征张量的市场引力场模型，捕捉市场异常波动）</p>
+            <p>2. 订单簿深度与市场情绪关联分析 （机构，散户亚毫秒级订单流解析 「延迟＜0.3ms」）</p>
+            <p>4. 非线性杠杆自适应系统 （最大风险敞口控制 「单次交易回撤＜2%」）</p>
+            <p>5. 黑天鹅事件预警系统 （24小时新闻监测，在利好消息进入大众视野前已持有获利的头寸）</p>
+        </div>
+
+        <!-- 其他内容模块 -->
+
+        <!-- 窗口倒影 -->
+        <div class="mirror-reflection" id="mirrorReflection"></div>
+    </div>
+   <!-- 镜面窗口 -->
+    <div class="mirror-window">
+        <!-- 窗口内容 -->
+        <h1>期货策略</h1>
+        
+        <div class="strategy-section">
+            <h2>公告</h2>
+            <p>正在测试xrp永续合约策略 （上线时间＜3个月）.</p>
+            <h2>实盘表现</h2>
+            <p>30日累计收益率：+112.85% (最大回撤＜13.31%)</p>
+            <p>👉 <a href="https://www.binance.com/zh-CN/copy-trading/lead-details/4164301048194727681?timeRange=7D" style="color: #00ff9d;">立即跟单</a></p>
+        </div>
+
+        <!-- 其他内容模块 -->
+
+        <!-- 窗口倒影 -->
+        <div class="mirror-reflection" id="mirrorReflection"></div>
+    </div>
+   <!-- 镜面窗口 -->
+    <div class="mirror-window">
+        <!-- 窗口内容 -->
+        <h1>现货策略</h1>
+        
+        <div class="strategy-section">
+            <h2>公告</h2>
+            <p>正在测试BTC现货策略 （上线时间＜3个月）.</p>
+            <p>如果投入资金小于带单余额请选择按额度（建议额度为10usdt）</p>
+            <p>如果投入资金大于等于带单余额请选择按比例</p>
+            <p>专注投资BTC和XRP两个资产，如果您只想投资其中的一个资产请你在跟单时勾选BTC和XRP其中之一</p>
+            <h2>实盘表现</h2>
+            <p>30日累计收益率：+9.10% (最大回撤＜10.20%)</p>
+            <p>👉 <a href="https://www.binance.com/zh-CN/copy-trading/lead-details/4412614785003131136?timeRange=7D" style="color: #00ff9d;">立即跟单</a></p>
+        </div>
+
+        <!-- 其他内容模块 -->
+
+        <!-- 窗口倒影 -->
+        <div class="mirror-reflection" id="mirrorReflection"></div>
+    </div>
+   <!-- 镜面窗口 -->
+    <div class="mirror-window">
+        <!-- 窗口内容 -->
+        <h1>警告⚠️</h1>
+        
+        <div class="strategy-section">
+            <h3>风险警示</h3>
+            <p>本策略历史数据不代表未来表现，数字货币交易存在市场风险。跟单前请务必：
+                <br>1. 仔细阅读币安跟单协议
+                <br>2. 评估自身风险承受能力
+                <br>3. 建议先用模拟账户测试
+                <br>4. 本策略不承担亏损赔付
+            </p>
+            <p>© 2025 影流221量化策略 保留所有权利</p>
+        </div>
+
+        <!-- 其他内容模块 -->
+
+        <!-- 窗口倒影 -->
+        <div class="mirror-reflection" id="mirrorReflection"></div>
+    </div>
+
+    <script>
+        // 海浪生成器
+        function createWaveParticle(container) {
+            const x = document.createElement('div');
+            x.className = 'x-particle';
+            
+            // 随机参数
+            const characters = ['X', '✖', '✗', '╳', '𐌗'];
+            const waveOffset = Math.random() * 2 - 1; // -1到1的横向偏移系数
+            const waveRotate = Math.random() > 0.5 ? 1 : -1; // 旋转方向
+
+            x.textContent = characters[Math.floor(Math.random() * characters.length)];
+            x.style.setProperty('--wave-offset', waveOffset);
+            x.style.setProperty('--wave-rotate', waveRotate);
+            
+            // 动态样式
+            x.style.left = Math.random() * 120 - 10 + '%';
+            x.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            x.style.fontSize = (Math.random() * 25 + 20) + 'px';
+            x.style.opacity = Math.random() * 0.7 + 0.3;
+            x.style.animationDelay = Math.random() * 3 + 's';
+            
+            container.appendChild(x);
+            
+            // 自动移除
+            setTimeout(() => x.remove(), parseFloat(x.style.animationDuration) * 1000);
+        }
+
+        // 双容器粒子生成
+        function generateWaves() {
+            [xOcean, xOceanMirror].forEach(container => {
+                if(container.children.length < 300) { // 控制最大粒子数
+                    createWaveParticle(container);
+                }
+            });
+        }
+
+        // 初始化容器
+        const xOcean = document.getElementById('xOcean');
+        const xOceanMirror = document.getElementById('xOceanMirror');
+        
+        // 高频生成器
+        setInterval(generateWaves, 30); // 约33粒子/秒
+
+        // 动态响应
+        window.addEventListener('resize', () => {
+            [xOcean, xOceanMirror].forEach(c => {
+                while(c.firstChild) c.removeChild(c.firstChild);
+            });
+        });
+
+        // 初始化镜像内容
+        document.getElementById('mirrorReflection').innerHTML = 
+            document.querySelector('.mirror-window').innerHTML;
+    </script>
+</body>
+</html>
